@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="slide h-screen flex justify-center items-start px-96 {classes}"
+	class="slide h-screen flex justify-center items-start xl:px-64 lg:px-40 md:px-14 px-5 {classes}"
 	{id}
 	style="background-image: url({bg});"
 >

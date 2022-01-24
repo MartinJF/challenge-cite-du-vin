@@ -62,10 +62,10 @@
 			<h2>Titre :</h2>
 			<span>{lowCepage.title}</span>
 
-			<h2>Description :</h2>
+			<h2>Pays d'origine :</h2>
 			<span>{lowCepage.country}</span>
 
-			<h2>Pays d'origine :</h2>
+			<h2>Description :</h2>
 			<span>{lowCepage.description}</span>
 
 			{#if lowCepage.price}
