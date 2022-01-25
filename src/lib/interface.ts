@@ -6,6 +6,13 @@ export interface Page {
   imgPath?: string
 }
 
+export interface News {
+  id: number
+  name: string
+  active: boolean
+  content: string
+}
+
 export interface Wine {
   points: string
   title: string

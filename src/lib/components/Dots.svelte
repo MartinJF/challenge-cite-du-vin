@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { Page } from '$lib/interface';
+	import { News, Page } from '$lib/interface';
 	const dispatch = createEventDispatcher();
-	export let dots: Array<Page>;
+	export let dots: Array<Page | News>;
+	export let direction: string;
+	export let fixed: boolean = false;
 	$: innerWidth = 0;
 
 	const handleClick = function (i: number) {
@@ -13,7 +15,12 @@
 <svelte:window bind:innerWidth />
 
 {#if innerWidth >= 768}
-	<ul class="dots flex flex-col items-center justify-center">
+	<ul
+		class="dots flex items-center justify-center"
+		class:fixed
+		class:flex-col={direction === 'col'}
+		class:flex-row={direction === 'row'}
+	>
 		{#each dots as dot, i}
 			<li
 				class:active={dot.active}
@@ -30,8 +37,6 @@
 
 <style>
 	.dots {
-		position: fixed;
-		/* background: red; */
 		color: white;
 		right: 30px;
 		top: 50%;

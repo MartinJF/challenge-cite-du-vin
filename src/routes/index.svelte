@@ -15,13 +15,38 @@
 	import Slider from '$lib/components/Slider.svelte';
 	import Slide from '$lib/components/Slide.svelte';
 	import Logo from '$lib/components/Logo.svelte';
-	import { Page, Wine, SlideChangeDetail, SlideButtonDetail } from '$lib/interface';
+	import Dots from '$lib/components/Dots.svelte';
+	import { Page, News, Wine, SlideChangeDetail, SlideButtonDetail } from '$lib/interface';
 	export let lowCepage: Wine;
 
 	let pages: Array<Page> = [
 		{ id: 0, name: 'Actualités', active: true, anchor: 'actu', imgPath: '/news.jpg' },
 		{ id: 1, name: 'Découverte', active: false, anchor: 'discovery', imgPath: '/wines.jpg' },
 		{ id: 2, name: 'Footer', active: false, anchor: 'footer' }
+	];
+
+	let news: Array<News> = [
+		{
+			id: 0,
+			name: 'Actu 1',
+			active: true,
+			content:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab maxime quidem facere sequi perspiciatis, beatae quia animi debitis quo. Doloribus, ipsam autem quas rem illum aspernatur? Quasi blanditiis praesentium consequatur?'
+		},
+		{
+			id: 1,
+			name: 'Actu 2',
+			active: false,
+			content:
+				'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, architecto porro? Quo maiores molestiae obcaecati temporibus accusantium provident consequuntur accusamus eius cumque. Quibusdam assumenda adipisci beatae debitis, nostrum asperiores inventore. Illo magnam saepe itaque recusandae sapiente eaque mollitia laboriosam dolores aliquam quae voluptate, a, doloribus nihil sunt placeat non! Iste culpa sunt ratione repellat dolores. Tempore quod autem quam enim. Unde commodi nesciunt illo vitae sapiente. Hic numquam error suscipit laborum delectus amet blanditiis fugit dignissimos adipisci cupiditate quos facere explicabo qui sequi, accusamus modi quod quas maiores eius. Vitae.'
+		},
+		{
+			id: 2,
+			name: 'Actu 3',
+			active: false,
+			content:
+				'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, aperiam incidunt expedita aspernatur sint quisquam modi obcaecati debitis laboriosam in quidem maxime voluptatum voluptate eveniet eius? Sit rem aliquam magnam! Minus, ad labore? Assumenda ipsam incidunt dicta, alias explicabo magni quos, illum rerum labore laborum blanditiis eveniet, minus provident at possimus maxime recusandae. Doloremque ducimus animi repudiandae exercitationem culpa fugiat!'
+		}
 	];
 
 	let scrollAvailable = true;
@@ -47,6 +72,12 @@
 		pages[index].active = true;
 		pages = pages;
 	};
+	const handleSlideButtonNews = function (e: CustomEvent<SlideButtonDetail>) {
+		const { index } = e.detail;
+		news.forEach((n) => (n.active = false));
+		news[index].active = true;
+		news = news;
+	};
 </script>
 
 <svelte:head>
@@ -67,28 +98,21 @@
 	<Slide bind:page={pages[0]} on:slideChange={handleSlideChange}>
 		<div class="slide xl:px-64 lg:px-40 md:px-14 px-5 ">
 			<Logo classes="absolute top-0" />
-			<div class="box rounded-md px-4 py-9">
+			<div class="box relative rounded-md px-4 py-9 h-64">
 				<h1 class="font-bold text-2xl ">
 					{pages[0].name}
 				</h1>
-				<p class="px-8 pt-4">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab maxime quidem facere sequi
-					perspiciatis, beatae quia animi debitis quo. Doloribus, ipsam autem quas rem illum
-					aspernatur? Quasi blanditiis praesentium consequatur?
-				</p>
-				<p class="px-8 pt-4">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab maxime quidem facere sequi
-					perspiciatis, beatae quia animi debitis quo. Doloribus, ipsam autem quas rem illum
-					aspernatur? Quasi blanditiis praesentium consequatur?
-				</p>
-				<p class="px-8 pt-4">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur voluptas impedit
-					praesentium deserunt doloribus laborum cumque cupiditate soluta cum deleniti voluptate
-					nobis distinctio maiores, totam eius perspiciatis blanditiis asperiores enim! Inventore
-					saepe nihil culpa rerum atque architecto, officiis omnis, fugiat molestiae, illum
-					voluptas? Ipsum incidunt hic dicta placeat minima iusto inventore nam porro soluta
-					reiciendis assumenda a consectetur, illo pariatur.
-				</p>
+				<div class="px-8 pt-4">
+					{#each news as n}
+						{#if n.active}
+							<h2>{n.name}</h2>
+							<p class="px-5">
+								{n.content}
+							</p>
+						{/if}
+					{/each}
+				</div>
+				<Dots direction="row" dots={news} on:slideButton={handleSlideButtonNews} />
 			</div>
 		</div>
 	</Slide>
