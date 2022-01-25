@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
 	export async function load({ fetch }) {
-		const jsonLow = await fetch('https://challenge-cite-du-vin.vercel.app/api/GetLowCepage');
+		const url = process.env.API_URL;
+		const jsonLow = await fetch(`${url}/api/GetLowCepage`);
 
 		return {
 			props: {
@@ -13,11 +14,8 @@
 <script lang="ts">
 	import Slider from '$lib/components/Slider.svelte';
 	import Slide from '$lib/components/Slide.svelte';
-	import Dots from '$lib/components/Dots.svelte';
 	import { Page } from '$lib/interface';
 	import { Wine } from '$lib/interface';
-	import { slide } from 'svelte/transition';
-	// import { flip } from 'svelte/animate';
 	export let lowCepage: Wine;
 
 	let pages: Array<Page> = [
@@ -32,7 +30,7 @@
 		if (scrollAvailable) {
 			const { direction, index } = e.detail;
 			if (pages[index].active && index + direction > -1 && index + direction < pages.length) {
-				console.log(`direction: ${direction}, index: ${index}`);
+				// console.log(`direction: ${direction}, index: ${index}`);
 				pages[index].active = false;
 				pages[index + direction].active = true;
 
@@ -41,6 +39,13 @@
 				setTimeout(() => (scrollAvailable = true), 1500);
 			}
 		}
+	};
+
+	const handleSlideButton = function (e) {
+		const { index } = e.detail;
+		pages.forEach((p) => (p.active = false));
+		pages[index].active = true;
+		pages = pages;
 	};
 
 	// $: console.log(pages);
@@ -60,9 +65,9 @@
 	<title>La cité du Vin</title>
 </svelte:head>
 
-<Slider {pages}>
+<Slider {pages} on:slideButton={handleSlideButton}>
 	<Slide
-		classes={'color-white text-white flex-col'}
+		classes="color-white text-white flex-col"
 		bind:page={pages[0]}
 		on:slideChange={handleSlideChange}
 	>
@@ -89,7 +94,7 @@
 		</p>
 	</Slide>
 	<Slide
-		classes={'color-white text-white flex-col'}
+		classes="color-white text-white flex-col"
 		bind:page={pages[1]}
 		on:slideChange={handleSlideChange}
 	>
@@ -122,7 +127,7 @@
 		</div>
 	</Slide>
 	<Slide
-		classes={'bg-slate-700 color-white text-white flex-col'}
+		classes="bg-slate-700 color-white text-white flex-col"
 		bind:page={pages[2]}
 		on:slideChange={handleSlideChange}
 	>

@@ -15,7 +15,7 @@
 		});
 	};
 
-	$: console.log(page);
+	// $: console.log(page);
 </script>
 
 {#if page.active}
@@ -36,7 +36,7 @@
 
 <style>
 	section {
-		background-size: 120vw;
+		background-size: cover;
 		background-repeat: no-repeat;
 	}
 </style>

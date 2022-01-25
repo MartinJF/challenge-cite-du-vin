@@ -5,7 +5,8 @@ import { EndpointOutput } from "@sveltejs/kit";
 export async function get(): Promise<EndpointOutput> {
   // const ptsList: Array<number> = wines.map((w) => w.points)
 
-  const jsonWines = await fetch("https://challenge-cite-du-vin.vercel.app/wineData.json")
+  const url = process.env.API_URL
+  const jsonWines = await fetch(`${url}/wineData.json`)
   const wines: Array<Wine> = await jsonWines.json()
   const lowCepage = wines.filter((w: Wine) => Number(w.points) < 85)
   const rand = Math.floor(Math.random() * lowCepage.length)

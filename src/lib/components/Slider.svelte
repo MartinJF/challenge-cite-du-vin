@@ -5,6 +5,6 @@
 </script>
 
 <div class="w-screen h-screen">
-	<Dots dots={pages} />
+	<Dots dots={pages} on:slideButton />
 	<slot />
 </div>
