@@ -35,7 +35,7 @@
 
 				pages = pages;
 				scrollAvailable = false;
-				setTimeout(() => (scrollAvailable = true), 1500);
+				setTimeout(() => (scrollAvailable = true), 700);
 			}
 		}
 	};
