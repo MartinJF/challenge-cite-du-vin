@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	export async function load({ fetch }) {
-		const jsonLow = await fetch('http://localhost:3000/api/GetLowCepage');
+		const jsonLow = await fetch('https://challenge-cite-du-vin.vercel.app/api/GetLowCepage');
 
 		return {
 			props: {
