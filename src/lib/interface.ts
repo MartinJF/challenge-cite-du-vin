@@ -1,4 +1,5 @@
-export interface Dot {
+export interface Page {
+  id: number
   name: string
   active: boolean
   anchor: string

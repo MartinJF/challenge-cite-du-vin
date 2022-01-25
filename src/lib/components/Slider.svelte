@@ -1,10 +1,10 @@
-<div class="cont w-screen h-screen">
+<script lang="ts">
+	import Dots from '$lib/components/Dots.svelte';
+	import { Page } from '$lib/interface';
+	export let pages: Array<Page>;
+</script>
+
+<div class="w-screen h-screen">
+	<Dots dots={pages} />
 	<slot />
 </div>
-
-<style>
-	.cont {
-		scroll-snap-type: y mandatory;
-		overflow-y: scroll;
-	}
-</style>

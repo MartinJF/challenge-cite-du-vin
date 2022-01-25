@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	export async function load({ fetch }) {
-		const jsonLow = await fetch('https://challenge-cite-du-vin.vercel.app//api/GetLowCepage');
+		const jsonLow = await fetch('http://localhost:3000/api/GetLowCepage');
 
 		return {
 			props: {
@@ -14,24 +14,58 @@
 	import Slider from '$lib/components/Slider.svelte';
 	import Slide from '$lib/components/Slide.svelte';
 	import Dots from '$lib/components/Dots.svelte';
-	import { Dot } from '$lib/interface';
+	import { Page } from '$lib/interface';
 	import { Wine } from '$lib/interface';
+	import { slide } from 'svelte/transition';
+	// import { flip } from 'svelte/animate';
 	export let lowCepage: Wine;
 
-	const pages: Array<Dot> = [
-		{ name: 'Actualités', active: true, anchor: 'actu', imgPath: '/news.jpg' },
-		{ name: 'Découverte', active: false, anchor: 'discovery', imgPath: '/wines.jpg' },
-		{ name: 'Footer', active: false, anchor: 'footer' }
+	let pages: Array<Page> = [
+		{ id: 0, name: 'Actualités', active: true, anchor: 'actu', imgPath: '/news.jpg' },
+		{ id: 1, name: 'Découverte', active: false, anchor: 'discovery', imgPath: '/wines.jpg' },
+		{ id: 2, name: 'Footer', active: false, anchor: 'footer' }
 	];
+
+	let scrollAvailable = true;
+
+	const handleSlideChange = function (e) {
+		if (scrollAvailable) {
+			const { direction, index } = e.detail;
+			if (pages[index].active && index + direction > -1 && index + direction < pages.length) {
+				console.log(`direction: ${direction}, index: ${index}`);
+				pages[index].active = false;
+				pages[index + direction].active = true;
+
+				pages = pages;
+				scrollAvailable = false;
+				setTimeout(() => (scrollAvailable = true), 1500);
+			}
+		}
+	};
+
+	// $: console.log(pages);
 </script>
 
 <svelte:head>
+	<link
+		rel="icon"
+		sizes="32x32"
+		href="https://www.laciteduvin.com/packs/media/images/favicons/favicon-32x32-5079c424a07cb942094695047e4cd14b.png"
+	/>
+	<link
+		rel="icon"
+		sizes="16x16"
+		href="https://www.laciteduvin.com/packs/media/images/favicons/favicon-16x16-94bab1ce209a71fc3b7ee781b1b41f79.png"
+	/>
 	<title>La cité du Vin</title>
 </svelte:head>
 
-<Dots dots={pages} />
-<Slider>
-	<Slide classes={'color-white text-white flex-col'} id={pages[0].anchor} bg={pages[0].imgPath}>
+<Slider {pages}>
+	<Slide
+		classes={'color-white text-white flex-col'}
+		bind:page={pages[0]}
+		on:slideChange={handleSlideChange}
+	>
 		<h1 class="font-bold text-2xl">
 			{pages[0].name}
 		</h1>
@@ -54,7 +88,11 @@
 			illo pariatur.
 		</p>
 	</Slide>
-	<Slide classes={' color-white text-white flex-col'} id={pages[1].anchor} bg={pages[1].imgPath}>
+	<Slide
+		classes={'color-white text-white flex-col'}
+		bind:page={pages[1]}
+		on:slideChange={handleSlideChange}
+	>
 		<h1 class="font-bold text-2xl">
 			{pages[1].name}
 		</h1>
@@ -83,7 +121,11 @@
 			<span>{lowCepage.province}</span>
 		</div>
 	</Slide>
-	<Slide classes={'bg-slate-700 color-white text-white flex-col'} id={pages[2].anchor}>
+	<Slide
+		classes={'bg-slate-700 color-white text-white flex-col'}
+		bind:page={pages[2]}
+		on:slideChange={handleSlideChange}
+	>
 		<h1 class="font-bold text-2xl">
 			{pages[2].name}
 		</h1>
