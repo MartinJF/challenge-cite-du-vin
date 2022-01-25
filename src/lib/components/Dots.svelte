@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { flip } from 'svelte/animate';
 	import { Page } from '$lib/interface';
 	const dispatch = createEventDispatcher();
 	export let dots: Array<Page>;
 	$: innerWidth = 0;
-	// $: console.log(innerWidth >= 768);
 
-	const handleClick = function (i) {
-		// console.log(e);
+	const handleClick = function (i: number) {
 		dispatch('slideButton', { index: i });
 	};
 </script>

@@ -21,3 +21,12 @@ export interface Wine {
   country: string
   winery: string
 }
+
+export interface SlideChangeDetail {
+  direction: number
+  index: number
+}
+
+export interface SlideButtonDetail {
+  index: number
+}

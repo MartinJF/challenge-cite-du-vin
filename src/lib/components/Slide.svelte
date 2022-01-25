@@ -4,17 +4,13 @@
 	import { Page } from '$lib/interface';
 	const dispatch = createEventDispatcher();
 	export let page: Page;
-	// const { imgPath, id, active } = page;
 
-	const handleScroll = function (e) {
-		// console.log(e);
+	const handleScroll = function (e: WheelEvent) {
 		dispatch('slideChange', {
-			direction: e.wheelDeltaY < 0 ? 1 : -1, // for down -1 for up
+			direction: e.deltaY < 0 ? 1 : -1, // for down -1 for up
 			index: page.id
 		});
 	};
-
-	// $: console.log(page);
 </script>
 
 {#if page.active}

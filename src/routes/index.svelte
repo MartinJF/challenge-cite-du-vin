@@ -15,8 +15,7 @@
 	import Slider from '$lib/components/Slider.svelte';
 	import Slide from '$lib/components/Slide.svelte';
 	import ArrowDown from '$lib/components/ArrowDown.svelte';
-	import { Page } from '$lib/interface';
-	import { Wine } from '$lib/interface';
+	import { Page, Wine, SlideChangeDetail, SlideButtonDetail } from '$lib/interface';
 	export let lowCepage: Wine;
 
 	let pages: Array<Page> = [
@@ -27,7 +26,7 @@
 
 	let scrollAvailable = true;
 
-	const handleSlideChange = function (e) {
+	const handleSlideChange = function (e: CustomEvent<SlideChangeDetail>) {
 		if (scrollAvailable) {
 			const { direction, index } = e.detail;
 			if (pages[index].active && index + direction > -1 && index + direction < pages.length) {
@@ -42,7 +41,7 @@
 		}
 	};
 
-	const handleSlideButton = function (e) {
+	const handleSlideButton = function (e: CustomEvent<SlideButtonDetail>) {
 		const { index } = e.detail;
 		pages.forEach((p) => (p.active = false));
 		pages[index].active = true;
