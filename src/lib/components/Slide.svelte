@@ -6,8 +6,10 @@
 	export let page: Page;
 
 	const handleScroll = function (e: WheelEvent) {
+		console.log(e.deltaY);
+
 		dispatch('slideChange', {
-			direction: e.deltaY < 0 ? 1 : -1, // for down -1 for up
+			direction: e.deltaY < 0 ? -1 : 1, // for down -1 for up
 			index: page.id
 		});
 	};

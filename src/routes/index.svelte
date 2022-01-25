@@ -14,14 +14,13 @@
 <script lang="ts">
 	import Slider from '$lib/components/Slider.svelte';
 	import Slide from '$lib/components/Slide.svelte';
-	import ArrowDown from '$lib/components/ArrowDown.svelte';
 	import { Page, Wine, SlideChangeDetail, SlideButtonDetail } from '$lib/interface';
 	export let lowCepage: Wine;
 
 	let pages: Array<Page> = [
-		{ id: 0, name: 'Actualités', active: false, anchor: 'actu', imgPath: '/news.jpg' },
+		{ id: 0, name: 'Actualités', active: true, anchor: 'actu', imgPath: '/news.jpg' },
 		{ id: 1, name: 'Découverte', active: false, anchor: 'discovery', imgPath: '/wines.jpg' },
-		{ id: 2, name: 'Footer', active: true, anchor: 'footer' }
+		{ id: 2, name: 'Footer', active: false, anchor: 'footer' }
 	];
 
 	let scrollAvailable = true;
@@ -129,7 +128,6 @@
 	<Slide bind:page={pages[2]} on:slideChange={handleSlideChange}>
 		<div class="slide !items-center h-full bg-slate-600">
 			<div class="flex flex-col items-center justify-center grow xl:px-64 lg:px-40 md:px-14 px-5 ">
-				<ArrowDown classes="" />
 				<a href="#"><button>boutique</button></a>
 			</div>
 			<footer class="w-full flex items-center text-center basis-40 bg-gray-900">
