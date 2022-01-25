@@ -14,6 +14,7 @@
 <script lang="ts">
 	import Slider from '$lib/components/Slider.svelte';
 	import Slide from '$lib/components/Slide.svelte';
+	import Logo from '$lib/components/Logo.svelte';
 	import { Page, Wine, SlideChangeDetail, SlideButtonDetail } from '$lib/interface';
 	export let lowCepage: Wine;
 
@@ -46,8 +47,6 @@
 		pages[index].active = true;
 		pages = pages;
 	};
-
-	// $: console.log(pages);
 </script>
 
 <svelte:head>
@@ -66,9 +65,10 @@
 
 <Slider {pages} on:slideButton={handleSlideButton}>
 	<Slide bind:page={pages[0]} on:slideChange={handleSlideChange}>
-		<div class="slide xl:px-64 lg:px-40 md:px-14 px-5">
+		<div class="slide xl:px-64 lg:px-40 md:px-14 px-5 ">
+			<Logo classes="absolute top-0" />
 			<div class="box rounded-md px-4 py-9">
-				<h1 class="font-bold text-2xl">
+				<h1 class="font-bold text-2xl ">
 					{pages[0].name}
 				</h1>
 				<p class="px-8 pt-4">
