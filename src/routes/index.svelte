@@ -129,22 +129,21 @@
 	</Slide>
 	<Slide bind:page={pages[2]} on:slideChange={handleSlideChange}>
 		<div class="slide !items-center h-full bg-slate-600">
-			<div class="flex flex-col items-center justify-center grow xl:px-64 lg:px-40 md:px-14 px-5">
-				<ArrowDown />
-
+			<div class="flex flex-col items-center justify-center grow xl:px-64 lg:px-40 md:px-14 px-5 ">
+				<ArrowDown classes="" />
 				<a href="#"><button>boutique</button></a>
 			</div>
-			<footer class="w-full flex items-center text-center basis-52 bg-gray-900">
-				<span
-					>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis sapiente totam
-					provident sunt earum, ea amet ducimus architecto eaque accusamus quisquam deleniti
-					asperiores labore nostrum, repellat, fugit assumenda enim! Expedita. Quaerat ea aliquid
-					atque soluta accusantium quisquam inventore assumenda animi quibusdam dolor obcaecati
-					ratione, quis blanditiis corrupti porro nisi rem laboriosam natus repudiandae. Quaerat
-					natus harum veniam quae consequuntur. Delectus? Pariatur atque laborum voluptas qui culpa
-					assumenda enim magni voluptates sunt. Corporis nam, veniam quasi velit mollitia commodi
-					eum reiciendis provident sunt neque magnam, amet a vel sed officiis. Illum?</span
-				>
+			<footer class="w-full flex items-center text-center basis-40 bg-gray-900">
+				<span>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis sapiente totam provident
+					sunt earum, ea amet ducimus architecto eaque accusamus quisquam deleniti asperiores labore
+					nostrum, repellat, fugit assumenda enim! Expedita. Quaerat ea aliquid atque soluta
+					accusantium quisquam inventore assumenda animi quibusdam dolor obcaecati ratione, quis
+					blanditiis corrupti porro nisi rem laboriosam natus repudiandae. Quaerat natus harum
+					veniam quae consequuntur. Delectus? Pariatur atque laborum voluptas qui culpa assumenda
+					enim magni voluptates sunt. Corporis nam, veniam quasi velit mollitia commodi eum
+					reiciendis provident sunt neque magnam, amet a vel sed officiis. Illum?
+				</span>
 			</footer>
 		</div>
 	</Slide>
