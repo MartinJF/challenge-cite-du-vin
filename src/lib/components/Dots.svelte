@@ -5,7 +5,7 @@
 	const dispatch = createEventDispatcher();
 	export let dots: Array<Page>;
 	$: innerWidth = 0;
-	$: console.log(innerWidth >= 768);
+	// $: console.log(innerWidth >= 768);
 
 	const handleClick = function (i) {
 		// console.log(e);
@@ -36,7 +36,7 @@
 		position: fixed;
 		/* background: red; */
 		color: white;
-		right: 40px;
+		right: 30px;
 		top: 50%;
 		z-index: 100;
 	}

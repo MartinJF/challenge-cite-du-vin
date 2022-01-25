@@ -3,7 +3,6 @@
 	import { slide } from 'svelte/transition';
 	import { Page } from '$lib/interface';
 	const dispatch = createEventDispatcher();
-	export let classes: string;
 	export let page: Page;
 	// const { imgPath, id, active } = page;
 
@@ -20,17 +19,13 @@
 
 {#if page.active}
 	<section
-		class="h-screen"
+		class="h-screen bg-fixed"
 		id={page.id.toString()}
 		style="background-image: url({page.imgPath});"
 		on:wheel|capture={handleScroll}
 		transition:slide
 	>
-		<div
-			class="cont h-full flex justify-center items-start xl:px-64 lg:px-40 md:px-14 px-5 {classes}"
-		>
-			<slot />
-		</div>
+		<slot />
 	</section>
 {/if}
 
