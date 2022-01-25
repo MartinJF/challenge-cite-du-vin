@@ -1,5 +1,5 @@
 <script>
-	import 'dotenv/config';
+	// import 'dotenv/config';
 	import '../app.css';
 </script>
 

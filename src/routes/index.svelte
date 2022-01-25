@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	export async function load({ fetch }) {
-		const url = process.env.API_URL;
+		const url = import.meta.env.VITE_API_URL;
 		const jsonLow = await fetch(`${url}/api/GetLowCepage`);
 
 		return {
